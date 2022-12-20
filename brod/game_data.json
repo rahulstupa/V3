@@ -1,0 +1,151 @@
+{
+    "MatchId": "42185316",
+    "GameNo.": 1,
+    "GameScore": "6-11",
+    "GameWinner": 0,
+    "SetTime": 280.53,
+    "ActiveTime": 28.54,
+    "Rallies": [
+        {
+            "Rally": "Long",
+            "A": 7,
+            "B": 8,
+            "count": 15
+        }
+    ],
+    "LongestRally": {
+        "Rally": "Long",
+        "A": 7,
+        "B": 8,
+        "count": 15
+    },
+    "IdleTime": 251.98999999999998,
+    "TotalPitches": {
+        "0": {
+            "pX": 1344,
+            "pY": 577,
+            "speed": 37.0
+        },
+        "1": {
+            "pX": 1339,
+            "pY": 543,
+            "speed": 36.0
+        },
+        "2": {
+            "pX": 1229,
+            "pY": 579,
+            "speed": 38.0
+        },
+        "3": {
+            "pX": 787,
+            "pY": 502,
+            "speed": 37.0
+        },
+        "4": {
+            "pX": 1207,
+            "pY": 460,
+            "speed": 20.0
+        },
+        "5": {
+            "pX": 745,
+            "pY": 452,
+            "speed": 39.0
+        },
+        "6": {
+            "pX": 1206,
+            "pY": 560,
+            "speed": 38.0
+        },
+        "7": {
+            "pX": 828,
+            "pY": 488,
+            "speed": 37.0
+        },
+        "8": {
+            "pX": 950,
+            "pY": 468,
+            "speed": 38.0
+        },
+        "9": {
+            "pX": 819,
+            "pY": 500,
+            "speed": 36.0
+        },
+        "10": {
+            "pX": 708,
+            "pY": 490,
+            "speed": 36.0
+        },
+        "11": {
+            "pX": 727,
+            "pY": 514,
+            "speed": 36.0
+        },
+        "12": {
+            "pX": 756,
+            "pY": 447,
+            "speed": 38.0
+        },
+        "13": {
+            "pX": 1124,
+            "pY": 500,
+            "speed": 37.0
+        },
+        "14": {
+            "pX": 653,
+            "pY": 438,
+            "speed": 37.0
+        },
+        "15": {
+            "pX": 782,
+            "pY": 528,
+            "speed": 38.0
+        },
+        "16": {
+            "pX": 1140,
+            "pY": 466,
+            "speed": 43.0
+        }
+    },
+    "ServicePitches": {
+        "0": {
+            "pX": 1344,
+            "pY": 577,
+            "speed": 37.0
+        }
+    },
+    "ThirdPitches": {
+        "0": {
+            "pX": 1229,
+            "pY": 579,
+            "speed": 38.0
+        }
+    },
+    "WinningPitches": {
+        "0": {
+            "pX": 1140,
+            "pY": 466,
+            "speed": 43.0
+        }
+    },
+    "PlayerA_Analysis": {
+        "TotalService": 0,
+        "TotalReceive": 1,
+        "PtWonOnService": 0,
+        "PtWonOnReceive": 0,
+        "ForehandWin": 0,
+        "BackHandWin": 0,
+        "AvgServeSpeedSum": 0,
+        "AvgServeSpeed": 0
+    },
+    "PlayerB_Analysis": {
+        "TotalService": 1,
+        "TotalReceive": 0,
+        "PtWonOnService": 1,
+        "PtWonOnReceive": 0,
+        "ForehandWin": 0,
+        "BackHandWin": 0,
+        "AvgServeSpeedSum": 37.0,
+        "AvgServeSpeed": 37
+    }
+}

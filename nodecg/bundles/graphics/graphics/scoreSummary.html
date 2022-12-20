@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Summary</title>
+  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+
+    }
+    @font-face {
+    font-family: 'Prometo';
+    src: url('./fonts/Prometo-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBoldItalic.ttf') format('truetype');
+        font-weight: 800;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-ThinItalic.ttf') format('truetype');
+        font-weight: 100;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Black.ttf') format('truetype');
+        font-weight: 900;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Thin.ttf') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBold.ttf') format('truetype');
+        font-weight: 800;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BlackItalic.ttf') format('truetype');
+        font-weight: 900;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/rometo.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body {
+        /* change background here */
+        background: transparent;
+        /* background-color: aqua; */
+        /* change font size, font and font boldness from here*/
+        font-size: 1.8vw;
+        font-family: "Prometo"  !important;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        font-family: sans-serif;
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        bottom: -700px;
+    }
+    
+    table {
+        width: auto;
+        /* border-collapse: collapse; */
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0,0.7);
+        border-left: 20px solid ;
+        border-right: 20px solid ;
+        border-image: -webkit-gradient(linear, left top, left bottom, from(#6ecce3), to(#084a5b))100 100% 0 100% stretch;
+        /* border-radius: 13px; */
+        background-color: rgba(0, 0, 0, 0.8);
+        opacity: 0;
+        
+    }
+    .toprow{
+        position: relative;
+        font-weight: 100;
+        font-size: 22px;
+        height: 35px;
+        padding: 5px;
+    }
+    .event{
+        position: relative;
+        font-weight: 100;
+        font-size: 22px;
+        height: 35px;
+        padding: 5px;
+        padding-left: 23px;
+        text-align: left;
+    }
+    .Aset, .Bset {
+        position: relative;
+        font-weight: 800;
+        font-size: 42px;
+        width: 40px;
+        padding: 12px;
+        text-align: center;
+        font-weight: 600;
+        color: rgb(0, 0, 0);
+        background-color: #32bcde;
+
+    }
+    .score {
+        position: relative;
+        font-weight: 800;
+        font-size: 37px;
+        height: 35px;
+        padding: 5px;
+        padding-left: 23px;
+        text-align: left;
+        font-weight: 300;
+
+    }
+     .score, .Aname,.Bname {
+        padding: 18px;
+        background-color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+        
+    thead th {
+        position: relative;
+        text-align: center;
+        background-image: linear-gradient(to top, #000000,#242424)
+    }
+    .Aname,.Bname {
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 235px;
+        font-weight: 500 !important;
+
+    }
+    .score ::before{
+        position: relative;
+        left: 0;
+        right: 0;
+        background-color: rgba(130, 230, 255, 0.816);
+        z-index: -1;
+        }
+
+
+</style>
+
+<body>
+    <!-- <img style="position:absolute;" src="wtt_hall_reference.png" alt=""> -->
+    <div class="container">
+        <!-- <button onclick=scoreplus() >Plus button for testing</button> -->
+        <table class="fulltable">
+            <thead>
+                <tr class="toprow">
+                    <th class="event">Women Singles U-19</th>
+                    <th class="settop"></th>
+                    <!-- <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="midrow">
+                    <td class="Aname">Gaurav Gambhir</td>
+                    <td class="Aset">2</td>
+                    <!-- <td class="score">12</td>
+                    <td class="score">3</td>
+                    <td class="score">14</td>
+                    <td class="score">5</td> -->
+                </tr>
+                <tr class="downrow">
+                    <td class="Bname">Shubham Balhara</td>
+                    <td class="Bset">3</td>
+                    <!-- <td class="score">7</td>
+                    <td class="score">11</td>
+                    <td class="score">12</td>
+                    <td class="score">11</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>   
+        nodecg.listenFor('Reload_All', ()=>{
+            window.location.reload(true)
+        })
+        const Acustomname = nodecg.Replicant('Acustomname');
+        const Bcustomname = nodecg.Replicant('Bcustomname');
+        const EventCustomname = nodecg.Replicant('EventCustomname');
+		const ManualNamesSW = nodecg.Replicant('ManualNamesSW')
+        const PrimaryColor = nodecg.Replicant('PrimaryColour')
+		const DarkerColor = nodecg.Replicant('DarkerColour')
+        PrimaryColor.on('change', value => {
+            document.querySelector('.Aset').style.backgroundColor = PrimaryColor.value
+            document.querySelector('.Bset').style.backgroundColor = PrimaryColor.value
+            document.querySelector('table').style.borderImage = `-webkit-gradient(linear, left top, left bottom, from(${PrimaryColor.value}), to(${DarkerColor.value}))100 100% 0 20% stretch`
+        })
+        DarkerColor.on('change', value => {
+            document.querySelector('table').style.borderImage = `-webkit-gradient(linear, left top, left bottom, from(${PrimaryColor.value}), to(${DarkerColor.value}))100 100% 0 20% stretch`
+        })
+        EventCustomname.on('change', value => {
+            document.querySelector('.event').innerHTML = value
+            console.log(value)
+        })
+
+        const FinalSet = nodecg.Replicant('FinalSet')
+    	const PlayingStatus = nodecg.Replicant('Status')
+
+    
+        var toprow = document.querySelector('.toprow')
+        var midrow = document.querySelector('.midrow')
+        var downrow = document.querySelector('.downrow')
+        var Ascores = []
+        var Bscores = []
+        var setnum = 0
+
+        function scoreplus () {
+            Ascores.push(9)
+            Bscores.push(11)
+            console.log(Ascores.slice(-1))
+            
+        }
+        var t1 = gsap.timeline({paused: false, yoyo:true})
+        
+        
+        nodecg.listenFor('triggerSetfinish', () => {
+            Ascores.push(PlayerAGameScoreDATA.value)
+            Bscores.push(PlayerBGameScoreDATA.value)
+            setnum++
+            toprow.innerHTML += `<th>${setnum}</th>`
+            midrow.innerHTML += `<td class="score">${Ascores.slice(-1)}</td>`
+            downrow.innerHTML += `<td class="score">${Bscores.slice(-1)}</td>`
+            t1.to('table', 1, { yPercent: -20, delay: 6, opacity: 1, ease: Power4.easeOut, stagger: 1 });
+            t1.to('table', 0.5, { yPercent: 0, delay: 10, opacity: 0, ease: Power4.easeOut, stagger: 1 });
+        })
+        nodecg.listenFor('triggerMatchfinish', ()=>{
+            Ascores = []
+            Bscores = []
+            setnum = 0
+            window.location.reload(true)
+            console.log('Matchfinish Animation Complete')
+
+        })
+        nodecg.listenFor('triggerSetstart', ()=>{
+            console.log('Setstart Animation Complete')
+        })
+
+        ManualNamesSW.on('change', value=>{
+            ManualNamesSW.value = value
+            if (ManualNamesSW.value == true) {
+            document.querySelector('.Aname').innerHTML = Acustomname.value
+            document.querySelector('.Bname').innerHTML = Bcustomname.value
+
+        }else {
+            document.querySelector('.Aname').innerHTML = PLayerADATA.value
+            document.querySelector('.Bname').innerHTML = PLayerBDATA.value
+
+            }
+        })
+        Acustomname.on('change', value=>{
+            Acustomname.value = value
+            if (ManualNamesSW.value == true) {
+            document.querySelector('.Aname').innerHTML = Acustomname.value
+        }
+        })
+        Bcustomname.on('change', value=>{
+            Bcustomname.value = value
+            if (ManualNamesSW.value == true) {
+            document.querySelector('.Bname').innerHTML = Bcustomname.value
+        }
+        })
+
+        const PLayerADATA = nodecg.Replicant('PLayerADATA');
+        PLayerADATA.on('change', value=>{
+            PLayerADATA.value = value
+            if (ManualNamesSW.value == false) {
+            document.querySelector('.Aname').innerHTML = value
+        }
+    })
+    const PLayerBDATA = nodecg.Replicant('PLayerBDATA');
+    PLayerBDATA.on('change', value=>{
+        PLayerBDATA.value = value
+        if (ManualNamesSW.value == false) {
+        document.querySelector('.Bname').innerHTML = value
+    }
+        })
+        const CurrentSetA = nodecg.Replicant('CurrentSetA');
+        CurrentSetA.on('change', value=>{
+            document.querySelector('.Aset').innerHTML = value
+        })
+        const CurrentSetB = nodecg.Replicant('CurrentSetB');
+        CurrentSetB.on('change', value=>{
+            document.querySelector('.Bset').innerHTML = value
+        })
+        const PlayerAGameScoreDATA = nodecg.Replicant('PlayerAGameScoreDATA');
+        const PlayerBGameScoreDATA = nodecg.Replicant('PlayerBGameScoreDATA');
+        
+	</script>
+	
+</body>
+
+</html>

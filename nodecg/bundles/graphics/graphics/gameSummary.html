@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+</head>
+<style>
+    
+    
+    @font-face {
+    font-family: 'Prometo';
+    src: url('./fonts/Prometo-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBoldItalic.ttf') format('truetype');
+        font-weight: 800;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-ThinItalic.ttf') format('truetype');
+        font-weight: 100;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Black.ttf') format('truetype');
+        font-weight: 900;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Thin.ttf') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBold.ttf') format('truetype');
+        font-weight: 800;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BlackItalic.ttf') format('truetype');
+        font-weight: 900;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/rometo.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+
+    
+    :root {
+        --blue: #a70694;
+        --red: rgb(0, 234, 255);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Prometo', sans-serif !important;
+        /* font-weight: 500 !important; */
+        font-size: 15px;
+        word-spacing: 0.19rem;
+    }
+
+    body {
+        height: 1080px;
+        width: 1920px;
+        background: transparent;
+        color: white;
+    }
+
+    .innerBoard {
+        background: var(--red);
+        width: 1100px;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        /* padding-top: 8px; */
+        /* adjust size of board by increasing the scale value */
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+        padding: 0px 2px 2px 2px;
+        box-shadow: 0 0 150px rgba(248, 248, 248, 0.3);
+        /* backdrop-filter: drop-shadow(14px 4px 10px black); */
+    }
+
+    .container-fluid {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.794);
+        position: relative;
+        opacity: 0;
+    }
+    .header {
+        position: relative;
+    }
+
+    .bgflex {
+        display: flex;
+        width: 83%;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        /* z-index: -1; */
+        height: 40px;
+        filter: blur(24px);
+    }
+
+    .bgflex span.bgShadow_1 {
+        width: 100%;
+        height: 20px;
+        background-image: linear-gradient(270deg, var(--red) 15%, transparent);
+    }
+
+    .bgflex span.bgShadow_2 {
+        width: 100%;
+        height: 20px;
+        background-image: linear-gradient(45deg, var(--red) 15%, transparent);
+    }
+
+    .center-image {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .center-image img {
+        width: 30%;
+        padding: 10px 20px;
+        height: auto;
+    }
+
+    #bg_transparent {
+        background: transparent;
+    }
+
+    .heading {
+        height: 90px;
+        font-weight: 500;
+        background: #000;
+        color: #fff;
+        border-top: 3px solid var(--red);
+        /* box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
+    }
+
+    .blank {
+        height: 65px;
+        width: 100%;
+    }
+
+    .columnBody {
+        background: #000;
+        padding: 5px;
+    }
+    .columnBody div:nth-child(even) {
+        background-color: #38383870;
+        transform: translateX();
+
+    }
+    .col-2 div:nth-child(even) {
+        background-color: #38383870
+    }
+
+    .atMiddle {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 16px;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    h2 {
+        font-size: 180%;
+    }
+
+    .atMiddle span.bottomelement {
+        display: block;
+        position: relative;
+        height: 5px;
+        filter: blur(13px);
+        transform: translateY(6px);
+        width: 80%;
+        background: radial-gradient(var(--red), #38383870 80%);
+    }
+
+    .row {
+        height: 100%;
+        width: 100%;
+        margin-left: -1px;
+    }
+
+    .gsummary h1{
+        font-style: inherit;
+        opacity: 0.6;
+        font-weight: 100;
+        letter-spacing: 11px;
+    }
+
+    .gscores h2 {
+        font-size: 40px;
+        font-weight: 300;
+    }
+
+    .row .col-2,
+    .col-8 {
+        /* background-color: #00000030; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+    }
+
+    .playernameSection {
+        display: flex;
+        padding: 0 3%;
+        margin-top: 7px;
+        align-items: center;
+        font-variant: small-caps;
+
+    }
+
+    .playernameSection h2 {
+
+        font-size: 240%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgba(0, 0, 0, 0.428);
+        font-weight: 700;
+        font-style: normal;
+        text-align: center;
+    }
+
+    .PlayerAName, .PlayerBName {
+        white-space: nowrap;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .PlayerAName {
+        justify-content: start;
+    }
+
+    .PlayerBName {
+        justify-content: end !important;
+    }
+
+    .container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    
+    svg {
+        /* display: block; */
+        width: 100%;
+        height: 100%;
+        opacity:0;
+        position: absolute;
+        /* justify-content: center;
+        align-items: center; */
+
+    }
+    
+    path {
+        filter: blur(2px);
+        filter: drop-shadow(0 0 5px #0c5f80 );
+        stroke: rgb(66, 227, 255);
+        box-shadow: 0 0 110px 70px rgb(255, 0, 0);
+        stroke-width: 4px;
+        stroke-linejoin: round;
+        fill-opacity: 0.5;
+        /* overflow: auto; */
+        fill: rgb(0, 0, 0);
+        
+    }
+    .BGtext {
+        position: relative;
+        /* z-index: 1; */
+        display: flex;
+        font-size: 12px;
+        position: absolute;
+        opacity: 0;
+        margin: 0 auto;
+        align-items: center;
+        font-size: 17px;
+        justify-content: center;
+    } 
+    
+    .highlight {
+        display: flex;
+        filter: drop-shadow(0 0 10px #f0f0f0 );
+        color: rgb(250, 250, 250);
+        opacity: 0;
+        justify-content: center;
+        align-items:center;
+		animation: fadeDown 0.5s ease-out both;
+    }
+    
+    .total, .serves, .third, .winner {
+        width: 100%;
+        /* height: 100%; */
+        /* margin: 0 1px; */
+        opacity: 1;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    .total p, .serves p, .third p, .winner p {
+        margin: auto;
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(131, 131, 131);
+
+    }
+
+    #settotal, #setserves, #setthird, #setwinner {
+        opacity: 0;
+        position:absolute;
+    }
+    #pre_summary{
+        opacity: 0;
+    }
+
+    @keyframes fadeDown {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+</style>
+
+<body>
+    <div class="container-fluid">
+        <svg viewBox ='0 0 1920 1080'></svg>
+        <div class="set">
+            <img src="./set_heatmap.png" id="settotal">
+            <img src="./set_service_heatmap.png" id="setserves">
+            <img src="./set_third_heatmap.png" id="setthird">
+            <img src="./set_winning_heatmap.png" id="setwinner">        
+        </div>
+        <div class="BGtext">
+            <div class="total"><p>TOTAL</p></div>
+            <div class="serves"><p>SERVES</p></div>
+            <div class="third"><p>3RD BALL</p></div>
+            <div class="winner"><p>WINNERS</p></div>
+        </div>
+        
+        <div id="pre_summary">
+            <img src="onlytable.png" class="Fullgraphic" id="table">
+            <img src="gameheatmapBG.png" class="Fullgraphic" id="heatmap_bg">
+            <div id="holder">
+                <img src="Total.png" class="Fullgraphic" id="heatmap_label">
+                <img src="set_heatmap.png" class="Fullgraphic" id="heatmap">
+            </div>
+    
+        </div>
+        <div class="innerBoard">
+            <div class="header">
+                <div class="center-image">
+                    <div class="bgflex">
+                        <span class="bgShadow_1"></span>
+                        <span class="bgShadow_2"></span>
+                    </div>
+                    <div class="center-image">
+                    </div>
+                </div>
+            </div>
+            <section class="heading">
+                <div class="row">
+                    <div class="col-2 gscores">
+                        <h2>11</h2>
+                    </div>
+                    <div class="col-8 gsummary">
+                        <h1>GAME SUMMARY</h1>
+                    </div>
+                    <div class="col-2 gscores">
+                        <h2>9</h2>
+                    </div>
+                </div>
+            </section>
+            <section class="blank">
+                <div class="row">
+                    <div class="col-6 playernameSection">
+                        <div class="PlayerAName">
+                            <h2>Dimitrij Ovtcharov</h2>
+                        </div>
+                    </div>
+                    <div class="col-6 playernameSection">
+                        <div class="PlayerBName">
+                            <h2>Sathiyan Gnanesekaran</h2>
+                        </div>
+                    </div>
+            </section>
+            <div class="columnBody">
+                <div class="row mb-3 mt-2">
+                    <div class="col-2">
+                        <div class="atMiddle TotalServeA">
+                            <h2>8</h2>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="atMiddle">
+                            <h2>TOTAL SERVES</h2>
+                            <span class="bottomelement"></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="atMiddle TotalServeB">
+                            <h2>12</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3 mt-2">
+                    <div class="col-2">
+                        <div class="atMiddle ServeWinA">
+                            <h2>22</h2>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="atMiddle">
+                            <h2>POINT WON ON SERVICES</h2>
+                            <span class="bottomelement"></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="atMiddle ServeWinB">
+                            <h2>12</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3 mt-2">
+                    <div class="col-2">
+                        <div class="atMiddle TotalReceiveA">
+                            <h2>6</h2>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="atMiddle">
+                            <h2>TOTAL RECEIVES</h2>
+                            <span class="bottomelement"></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="atMiddle TotalReceiveB">
+                            <h2>11</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3 mt-2">
+                    <div class="col-2">
+                        <div class="atMiddle ReceiveWinA">
+                            <h2>7</h2>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="atMiddle">
+                            <h2>POINT WON ON RECEIVES</h2>
+                            <span class="bottomelement"></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="atMiddle ReceiveWinB">
+                            <h2>16</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2">
+                        <div class="atMiddle ServeSpeedA">
+                            <h2>57</h2>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="atMiddle">
+                            <h2>AVERAGE SERVICE SPEED</h2>
+                            <span class="bottomelement"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="atMiddle ServeSpeedB">
+                            <h2>78</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    nodecg.listenFor('Reload_All', ()=>{
+            window.location.reload(true)
+        })
+    var BGtext = document.querySelector(".BGtext")
+    const Htmptxt_Height = nodecg.Replicant('Htmptxt_Height')
+    const Htmptxt_Left = nodecg.Replicant('Htmptxt_Left')
+    const Htmptxt_Top = nodecg.Replicant('Htmptxt_Top')
+    const Htmptxt_Size = nodecg.Replicant('Htmptxt_Size')
+    const Htmptxt_Rotate = nodecg.Replicant('Htmptxt_Rotate')
+    var SetTotal = document.getElementById('settotal')
+    var SetServes = document.getElementById('setserves')
+    var SetThird = document.getElementById('setthird')
+    var SetWinner = document.getElementById('setwinner')
+    const PrimaryColor = nodecg.Replicant('PrimaryColour')
+    const DarkerColor = nodecg.Replicant('DarkerColour')
+    const HtmpVisibility = nodecg.Replicant('HtmpVisibility',{defaultValue: false})
+    PrimaryColor.on('change', value => {
+        document.documentElement.style.setProperty('--red', PrimaryColor.value);
+    })
+
+    nodecg.listenFor('Reload_Summary', ()=>{
+        window.location.reload(true)
+
+    })
+
+    HtmpVisibility.on('change', value=>{
+        HtmpVisibility.value = value
+        console.log(value)
+        if (value == true) {
+            document.querySelector('.container-fluid').style.opacity = '1'
+            document.querySelector('.BGtext').style.opacity = '1'
+            document.querySelector('svg').style.opacity = '1'
+        } else {
+            document.querySelector('.container-fluid').style.opacity = '0'
+            document.querySelector('.BGtext').style.opacity = '0'
+            document.querySelector('svg').style.opacity = '0'
+        }
+    })
+   
+    Htmptxt_Height.on('change', value=>{
+        Htmptxt_Height.value = Number(value)
+        HeatmapBG()
+    })
+    Htmptxt_Top.on('change', value=>{
+        Htmptxt_Top.value = Number(value)
+    })
+    Htmptxt_Left.on('change', value=>{
+        Htmptxt_Left.value = Number(value)
+    })
+    Htmptxt_Size.on('change', value=>{
+        Htmptxt_Size.value = Number(value)
+        BGtext.style.fontSize = Number(value) +'px'
+
+    })
+    Htmptxt_Rotate.on('change', value=>{
+        Htmptxt_Rotate.value = Number(value)
+        BGtext.style.transform = 'rotate('+ Number(value) + 'deg)'
+    })
+    // tl.from(total, {y:150,opacity:0,duration:1,});
+    
+    function HeatmapBG () {
+        
+fetch('coordinates.json',{mode: 'no-cors'}) 
+.then((response) => response.json())
+.then((data) => coordinates = data)
+.then(() => console.log(JSON.stringify(coordinates.coordinates)))
+.then(() => BGtext.style.top = coordinates.coordinates[0][1] - Htmptxt_Top.value + 'px')
+.then(() => BGtext.style.left = coordinates.coordinates[0][0] + Htmptxt_Left.value + 'px')
+.then(() => BGtext.style.width = ((coordinates.coordinates[1][0])-(coordinates.coordinates[0][0]) -20+ 'px'))
+// .then(() => BGtext.style.height = '10px')
+.then (() => document.querySelector('svg').innerHTML += `<path d=" M ${coordinates.coordinates[0]}
+    l 0 -${Htmptxt_Height.value}
+    L ${coordinates.coordinates[1][0]} ${coordinates.coordinates[1][1] - Htmptxt_Height.value}
+            L ${coordinates.coordinates[1]}
+            L ${coordinates.coordinates[2]}
+            L ${coordinates.coordinates[3]}
+            Z
+            L ${coordinates.coordinates[1]}
+            
+            "/>`)
+        }
+    const PLayerADATA = nodecg.Replicant('PLayerADATA');
+    const PLayerBDATA = nodecg.Replicant('PLayerBDATA');
+    const GameTotalServesA = nodecg.Replicant('GameTotalServesA')
+	const GameTotalServesWinA = nodecg.Replicant('GameTotalServesWinA')
+	const GameTotalReceivesA = nodecg.Replicant('GameTotalReceivesA')
+	const GameTotalReceivesWinA = nodecg.Replicant('GameTotalReceivesWinA')
+	const GameAvgServeSpeedA = nodecg.Replicant('GameAvgServeSpeedA')
+	const GameTotalServesB = nodecg.Replicant('GameTotalServesB')
+	const GameTotalServesWinB = nodecg.Replicant('GameTotalServesWinB')
+	const GameTotalReceivesB = nodecg.Replicant('GameTotalReceivesB')
+	const GameTotalReceivesWinB = nodecg.Replicant('GameTotalReceivesWinB')
+	const GameAvgServeSpeedB = nodecg.Replicant('GameAvgServeSpeedB')
+    image = document.getElementById('heatmap')
+    image_label = document.getElementById('heatmap_label')
+    const names = ["set_heatmap.png", "set_service_heatmap.png", "set_third_heatmap.png", "set_winning_heatmap.png", "set_placement_heatmap.png"]
+    const labels = ["Total.png", "Serves.png", "3rd-Ball.png", "Winner.png", "gameplacementsBG.png"]
+
+    var tl = gsap.timeline()
+    nodecg.listenFor('triggerSetHeatmaps', ()=>{        
+        HeatmapBG()
+        SetTotal.src = "./set_heatmap.png?t=" + new Date().getTime();
+        SetServes.src = "./set_service_heatmap.png?t=" + new Date().getTime();
+        SetThird.src = "./set_third_heatmap.png?t=" + new Date().getTime();
+        SetWinner.src = "./set_winning_heatmap.png?t=" + new Date().getTime();
+        document.querySelector('.PlayerAName h2').innerHTML = PLayerADATA.value
+        document.querySelector('.TotalServeA h2').innerHTML = GameTotalServesA.value
+        document.querySelector('.ServeWinA h2').innerHTML = GameTotalServesWinA.value
+        document.querySelector('.TotalReceiveA h2').innerHTML = GameTotalReceivesA.value
+        document.querySelector('.ReceiveWinA h2').innerHTML = GameTotalReceivesWinA.value
+        document.querySelector('.ServeSpeedA h2').innerHTML = GameAvgServeSpeedA.value
+        
+        document.querySelector('.PlayerBName h2').innerHTML = PLayerBDATA.value
+        document.querySelector('.TotalServeB h2').innerHTML = GameTotalServesB.value
+        document.querySelector('.ServeWinB h2').innerHTML = GameTotalServesWinB.value
+        document.querySelector('.TotalReceiveB h2').innerHTML = GameTotalReceivesB.value
+        document.querySelector('.ReceiveWinB h2').innerHTML = GameTotalReceivesWinB.value
+        document.querySelector('.ServeSpeedB h2').innerHTML = GameAvgServeSpeedB.value
+        
+        tl.to('.container-fluid',1, {opacity:0.99, ease:Power2.easeOut,});
+        tl.to('.BGtext, svg',0.5, {opacity:1, ease:Power2.easeOut,});
+        tl.to('#settotal',0.5, {opacity:1,repeatDelay:3,repeat:1,yoyo:true},'<');
+        tl.to('.total p',0.5, {repeatDelay:3,color: '#FFFFFF',className:'highlight',repeat:1, yoyo:true},'<');
+        tl.to('#setserves',0.5, {opacity:1,repeatDelay:3,repeat:1,yoyo:true});
+        tl.to('.serves p',0.5, {repeatDelay:3,color: 'rgb(255, 214, 31)',className:'highlight',repeat:1, yoyo:true},'<');
+        tl.to('#setthird',0.5, {opacity:1,repeatDelay:3,repeat:1,yoyo:true});
+        tl.to('.third p',0.5, {repeatDelay:3,color: '#FFA500',className:'highlight',repeat:1, yoyo:true},'<');
+        tl.to('#setwinner',0.5, {opacity:1,repeatDelay:3,repeat:1,yoyo:true});
+        tl.to('.winner p',0.5, {repeatDelay:3,color: '#00FF7F',className:'highlight',repeat:1, yoyo:true},'<');
+        tl.to('.BGtext, svg',1, {opacity:0,repeatDelay:3, ease:Power2.easeOut,});
+        tl.to('.innerBoard',0.5, {stagger:0.2,opacity:1});
+        tl.to('.innerBoard',0.5,{delay:10,opacity:0,});
+        tl.to('.container-fluid',1, {opacity:0, ease:Power2.easeOut,},'<');
+        })
+</script>
+</html>

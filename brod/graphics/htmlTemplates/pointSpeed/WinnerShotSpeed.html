@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+</head>
+<style>
+    :root {
+        --blue: #3b61a9;
+        --red: red;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Nunito', sans-serif !important;
+        font-size: 75%;
+    }
+
+    .container-fluid {
+        width: 100%;
+        position: relative;
+        height: 100%;
+    }
+
+    body {
+        height: 100vh;
+        background: transparent;
+        color: white;
+    }
+
+    .lastShotSpeed {
+        width: 400px;
+        height: 50px;
+        position: absolute;
+        bottom: 18vh;
+        left: 2vw;
+    }
+
+    .header {
+        position: relative;
+    }
+
+    h2 {
+        font-weight: 900;
+        margin: 0;
+        letter-spacing: 2px;
+    }
+
+    .row {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .row .col-4,
+    .col-8 {
+        padding: 0;
+        margin: 0;
+    }
+
+    .flex-container {
+        display: flex;
+        height: 100%;
+    }
+
+    .gradient_line {
+        width: 7px;
+        height: 100%;
+        background-image: linear-gradient(180deg, var(--red), transparent);
+
+    }
+
+    .text_container {
+        background: #000;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .score_container {
+        width: 100%;
+        height: 100%;
+        background: var(--red);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <div class="container-fluid" style="height: 100%;">
+        <div class="lastShotSpeed">
+            <div class="flex-container">
+                <div class="gradient_line"></div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="text_container">
+                            <h2><b>LAST SHOT SPEED</b></h2>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="score_container">
+                            <h2>Data Kmph</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

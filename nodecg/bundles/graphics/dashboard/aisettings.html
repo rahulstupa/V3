@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<style>
+		body {
+			background-color: rgb(61, 61, 61);
+			padding: 1%;
+			margin: 8px;
+			color: white;
+			
+		}
+		.monospace {
+			font-family: monospace;
+		}
+		.btn {
+			margin: 1%;
+		}
+		.checkbox {
+			position : relative ;
+			display : inline-block;
+			width : 25px;
+			height : 20px;
+			background-color: red;
+			border-radius: 30px;
+			border: 2px solid gray;
+		}
+		.description {
+			font-size: 11px;
+			margin: auto;
+		}
+		label {
+			color: white;
+			font-family: 'Rubik', sans-serif;
+			position: absolute;
+			margin-top: -1.5px;
+			margin-left: 4px;
+        }
+
+	</style>
+</head>
+<body>
+	<form name="SwitchesForm" id="update-switches">
+		<input name="PitchSize" style="width:90px;" onchange=Pitch_Size() class="PitchSize" type="number" value="1.4">
+		<label for="PitchSize">Pitch Size</label>
+		<p class="description">Increase/Decrease Size of Tracking Ball <br> (You can enter decimal value like 1.4)</p>
+		<hr>
+		<input name="pitchnum" style="width:90px;" onchange=PitchNum_Adjust() class="pitchnum" type="number" value="15">
+		<label for="pitchnum">Max Pitches in rally</label>
+		<p class="description">Previous pitch+line will disappear after a certain number of rally.</p>
+		<hr>
+		
+		<h5>Heatmaps Text Adjustment</h5>
+		<hr>
+		<input name="htmpvisibility" onclick=Htmp_visibility() class="checkbox htmpvisibility" type="checkbox" value="false">
+		<label for="htmpvisibility">Visibility for adjusting</label>
+		<p class="description">Turn on to adjust heatmaps and Turn off after adjustment</p>
+		<hr>
+		<input name="htmptxtH" style="width:90px;" onchange=Htmptxt_Adjust() class="htmptxt" type="number" value="50" > 
+		<label for="htmptxtH">Text Box Height</label> <br>
+		<input name="htmptxtT" style="width:90px;" onchange=Htmptxt_Adjust() class="htmptxt" type="number" value="50" >
+		<label for="htmptxtT">Adjust Top</label> <br>
+		<input name="htmptxtL" style="width:90px;" onchange=Htmptxt_Adjust() class="htmptxt" type="number" value="2" >
+		<label for="htmptxtL">Adjust Left</label> <br>
+		<input name="htmptxtS" style="width:90px;" onchange=Htmptxt_Adjust() class="htmptxt" type="number" value="21" >
+		<label for="htmptxtS">Font Size</label> <br>
+		<input name="htmptxtR" style="width:90px;" onchange=Htmptxt_Adjust() class="htmptxt" type="number" >
+		<label for="htmptxtR">Rotate</label>
+		<p class="description">Adjust the position of (TOTAL SERVES 3RD WINNER)</p>
+		<hr>
+		<button onclick=Reload_Summary()>Reload Game & Match Summary</button>
+		
+	</form>
+	<script>
+		
+		const Htmptxt_Height = nodecg.Replicant('Htmptxt_Height')
+		const Htmptxt_Left = nodecg.Replicant('Htmptxt_Left')
+		const Htmptxt_Top = nodecg.Replicant('Htmptxt_Top')
+		const Htmptxt_Size = nodecg.Replicant('Htmptxt_Size')
+		const Htmptxt_Rotate = nodecg.Replicant('Htmptxt_Rotate')
+		const PitchSize = nodecg.Replicant('PitchSize')
+		const HtmpVisibility = nodecg.Replicant('HtmpVisibility')
+		const ReloadSummary = nodecg.Replicant('ReloadSummary')
+		const PitchNum = nodecg.Replicant('PitchNum')
+
+
+		
+
+		const Htmptxt_Adjust = () => {
+			Htmptxt_Height.value = document.forms["SwitchesForm"]["htmptxtH"].value
+			Htmptxt_Top.value = document.forms["SwitchesForm"]["htmptxtT"].value
+			Htmptxt_Left.value = document.forms["SwitchesForm"]["htmptxtL"].value
+			Htmptxt_Size.value = document.forms["SwitchesForm"]["htmptxtS"].value
+			Htmptxt_Rotate.value = document.forms["SwitchesForm"]["htmptxtR"].value
+		}
+		const Primary_Colour = (value) => {
+			PrimaryColor.value = document.forms["SwitchesForm"]["PrimaryColor"].value
+		}
+		const Darker_Colour = (value) => {
+			DarkerColor.value = document.forms["SwitchesForm"]["DarkerColor"].value
+		}
+		const Pitch_Size = (value) => {
+			PitchSize.value = document.forms["SwitchesForm"]["PitchSize"].value
+		}
+		const PitchNum_Adjust = (value) => {
+			PitchNum.value = document.forms["SwitchesForm"]["pitchnum"].value
+		}
+		const Htmp_visibility = (value) => {
+			HtmpVisibility.value = document.forms["SwitchesForm"]["htmpvisibility"].checked
+		}
+		const Reload_Summary = (value) => {
+			nodecg.sendMessage('Reload_Summary')
+		}
+		
+
+		
+	</script>
+</body>
+</html>

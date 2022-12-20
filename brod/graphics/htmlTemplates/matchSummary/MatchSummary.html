@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+</head>
+<style>
+    :root {
+        --blue: #3b61a9;
+        --red: red;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Nunito', sans-serif !important;
+        word-spacing: 0.19rem;
+        font-weight: 500 !important;
+    }
+
+    body {
+        height: 100vh;
+        color: white !important;
+    }
+
+    h1 {
+        margin: 0;
+    }
+    .container-fluid{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .innerBoard {
+        background: var(--red);
+        width: 800px;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1.2);
+        padding: 0px 5px 0px 0px;
+        backdrop-filter: drop-shadow(4px 4px 10px black);
+    }
+
+    .header {
+        position: relative;
+        backdrop-filter: blur(2px);
+        height: 100%;
+        background-image: linear-gradient(180deg, #180f02 42%, transparent);
+    }
+
+    .bgflex {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: -1;
+        height: 100%;
+    }
+
+    .center-image {
+        display: flex;
+        width: 100%;
+        padding: 10px 5px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .center-image img {
+        width: 100%;
+        padding: 0;
+        height: auto;
+    }
+
+    .heading {
+        height: 70px;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
+    }
+
+    .blank {
+        height: 50px;
+        width: 100%;
+    }
+
+    .columnBody {
+        background: #000;
+        padding: 5px;
+    }
+
+    .atMiddle {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2 {
+        font-size: 150%;
+    }
+
+    .atMiddle span.bottomelement {
+        display: block;
+        position: relative;
+        height: 4px;
+        width: 70%;
+        background: radial-gradient(var(--red), black 70%);
+
+    }
+
+    .row {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .col-2 {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .col-10 {
+        padding: 0;
+        border-left: 3px solid var(--red);
+    }
+
+    .playerAName {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 100%;
+    }
+
+    .playerBName {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        height: 100%;
+    }
+
+    .summaryHead {
+        text-align: center;
+    }
+
+    .name_overflow {
+        white-space: nowrap;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+    }
+
+    .name_overflow._a {
+        justify-content: start;
+    }
+
+    .name_overflow._b {
+        justify-content: end !important;
+    }
+
+    .name_overflow h2 {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <div class="container" >
+        <div class="matchSummary" style="height: 100%;">
+            <div class="scoreboard">
+                <div class="innerBoard">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="header">
+                                <div class="center-image">
+                                    <svg width="120" height="59" viewBox="0 0 124 29" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.5577 13.4756H12.2324V11.7601H23.5577C24.2792 11.7601 24.799 11.9806 24.799 12.6111C24.799 13.2551 24.2792 13.4756 23.5577 13.4756ZM25.9107 14.4001C27.4413 14.2976 28.2923 13.2861 28.2923 12.1276C28.2923 10.5126 26.676 9.45654 24.1346 9.45654H8.76758V19.7228H12.2324V15.5587H23.9765C24.7704 15.5587 25.2616 15.8217 25.2616 16.4832C25.2616 17.1446 24.7704 17.4212 23.9765 17.4212H13.4451L15.7124 19.7228H24.7133C27.2548 19.7228 28.8711 18.6378 28.8711 16.9222C28.8711 15.3672 27.527 14.5026 25.9107 14.4001ZM59.7878 19.7228H63.3116V12.1701H71.254V9.45654H59.7878V19.7228ZM51.8587 9.45654V12.1701H58.5751L55.9041 9.45654H51.8587ZM73.3614 15.7792H92.1932V13.4021H73.3614V15.7792ZM73.3614 19.7228H92.1932V17.3477H73.3614V19.7228ZM73.3614 11.8336H92.1932V9.45654H73.3614V11.8336ZM31.2222 15.7792H50.0539V13.4021H31.2222V15.7792ZM31.2222 19.7228H50.0539V17.3477H31.2222V19.7228ZM31.2222 11.8336H50.0539V9.45654H31.2222V11.8336ZM111.838 16.4735C111.952 16.4426 112.07 16.4058 112.194 16.3652C113.711 15.8585 114.72 14.7657 114.72 13.0791C114.72 10.6286 112.582 9.45654 109.883 9.45654H94.8185V19.7228H98.3118V12.0231H109.593C110.503 12.0231 111.153 12.2862 111.153 13.1662C111.153 14.0462 110.503 14.3112 109.593 14.3112H101.878L99.5245 16.7017H107.851L110.825 19.7228H115.036L111.838 16.4735Z"
+                                            fill="white" />
+                                        <!-- <rect x="0.750758" y="0.750758" width="122.498" height="27.4985" stroke="black"
+                                        stroke-width="1.50152" /> -->
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <section class="heading">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <h2>PlayerAGameScoreDATA</h2>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="summaryHead">
+                                            <h1>MATCH SUMMARY</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <h2>PlayerBGameScoreDATA</h2>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="blank">
+                                <div class="row" style="height: 100%;">
+                                    <div class="col-6 playernameSection">
+                                        <div class="name_overflow _a">
+                                            <h2>PLayerADATA</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 playernameSection">
+                                        <div class="name_overflow _b">
+                                            <h2>PLayerBDATA</h2>
+                                        </div>
+                                    </div>
+                            </section>
+                            <div class="columnBody">
+                                <div class="row mb-3 mt-2">
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>TotalServeA</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="atMiddle">
+                                            <h2>TOTAL SERVES</h2>
+                                            <span class="bottomelement"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>TotalServeB</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 mt-2">
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>ServeWinA</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="atMiddle">
+                                            <h2>POINT WON ON SERVICES</h2>
+                                            <span class="bottomelement"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>ServeWinB</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 mt-2">
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>TotalReceiveA</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="atMiddle">
+                                            <h2>TOTAL RECEIVES</h2>
+                                            <span class="bottomelement"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>TotalReceiveB</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 mt-2">
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>ReceiveWinA</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="atMiddle">
+                                            <h2>POINT WON ON RECEIVES</h2>
+                                            <span class="bottomelement"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>ReceiveWinB</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>ServeSpeedA</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="atMiddle">
+                                            <h2>AVERAGE SERVICE SPEED</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="atMiddle">
+                                            <h2>ServeSpeedB</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

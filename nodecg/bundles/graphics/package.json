@@ -1,0 +1,105 @@
+{
+  "name": "graphics",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "Abhishek",
+    "email": "abhishek.vats@stupaanalytics.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "panel",
+        "title": "To START",
+        "width": 2,
+        "file": "panel.html",
+        "headerColor": "#8A0707"
+      },
+      {
+        "name": "scoring",
+        "title": "Manual Scoring",
+        "width": 2,
+        "file": "mscoring.html",
+        "headerColor": "#008B8B"
+      },
+      {
+        "name": "triggers",
+        "title": "Triggers",
+        "width": 2,
+        "file": "triggers.html",
+        "headerColor": "#CCA01D"
+      },
+      {
+        "name": "switches",
+        "title": "Settings",
+        "width": 2,
+        "file": "switches.html",
+        "headerColor": "#CCA01D"
+      },
+      {
+        "name": "aisettings",
+        "title": "AI Graphics Settings",
+        "width": 2,
+        "file": "aisettings.html",
+        "headerColor": "#CCA01D"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "scoreBoard.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "scoreSummary.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "bigscoreBoard.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "rallyCount.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "shotSpeed.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameSummary.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "matchSummary.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "pitches.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "Apache-2.0"
+}

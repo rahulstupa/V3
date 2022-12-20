@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: rgb(61, 61, 61);
+			padding: 2%;
+			
+		}
+		.monospace {
+			font-family: monospace;
+		}
+		.btn {
+			margin: 1%;
+		}
+	</style>
+</head>
+<body>
+	<form id="update-matchid">
+	
+		<button onclick=plusAscore() class="btn btn-secondary btn-sm" >Point Trigger</button>
+		<button onclick=plusBscore() class="btn btn-secondary btn-sm">Set Trigger</button>
+
+		
+	</form>
+	<script>
+		const setTrigger = () => {
+			nodecg.sendMessage("triggerSetHeatmaps")
+		}
+		const matchTrigger = () => {
+			nodecg.sendMessage("triggerMatchHeatmaps")
+		}
+		const pointTrigger = () => {
+			nodecg.sendMessage('triggerRallyGraphic')
+		}
+		const pitchTrigger = () => {
+			nodecg.sendMessage('showPitches', data, coordinates)
+		}
+
+
+		
+	</script>
+</body>
+</html>

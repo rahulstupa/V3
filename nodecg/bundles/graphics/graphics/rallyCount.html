@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    @font-face {
+    font-family: 'Prometo';
+    src: url('./fonts/Prometo-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBoldItalic.ttf') format('truetype');
+        font-weight: 800;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-ThinItalic.ttf') format('truetype');
+        font-weight: 100;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Black.ttf') format('truetype');
+        font-weight: 900;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Thin.ttf') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBold.ttf') format('truetype');
+        font-weight: 800;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BlackItalic.ttf') format('truetype');
+        font-weight: 900;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/rometo.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        /* change background here */
+        background: transparent;
+
+        /* change font size, font and font boldness from here */
+        font-size: 1.5vw;
+        font-family: "Prometo" !important;
+        font-weight: 200 !important;
+
+        color: white;
+
+    }
+
+    img {
+        /* changes width of image by giving max width */
+        width: 20vw;
+        height: 5.5vh;
+        position: absolute;
+        left: 3vw;
+        z-index: -1;
+        bottom: 20vh;
+    }
+
+    .score_container {
+        position: absolute;
+        z-index: 1;
+        left: 19vw;
+        width: 4vw;
+        height: 5.4vh;
+        bottom: 20.1vh;
+
+    }
+    
+     .container_fluid {
+        opacity: 1;
+
+    }
+    .kmph{
+        font-size: 20px;
+        font-weight: 100;
+        transform: translateY(15px);
+    }
+    .rallycount, .shotspeed {
+        border: 2px solid #36d6fe;
+        border-bottom: 1px solid #36d6fe ;
+        border-left-width: 10px;
+        border-radius: 4px;
+        position: absolute;
+        width: auto;
+        height: 63px;
+        bottom: 209px;
+        left: 85px;
+        background-color: #000000;
+        font-size:27px;
+        font-weight: 300;
+        font-style: italic;
+        white-space: nowrap;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 15px;
+        padding-right: 23px;
+        padding-bottom: 0px;
+        text-align: center;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+    .speedvalue, .rallyvalue {
+        margin: 0;
+        margin-left: 18px;
+        /* padding-left: 6%; */
+        display: flex;
+        font-weight: 600;
+        font-size: 32px;
+        font-style: normal;
+        letter-spacing: 4px;
+        justify-content: center;
+        align-items: center;
+        border-left: 0.5px solid #676767 ;
+        padding-left: 22px;
+    }
+
+</style>
+
+<!-- all the position are arranged from left & bottom position -->
+
+<body>
+    <div class="container_fluid">
+        
+        <div class="rallycount">
+            LAST RALLY COUNT
+            <p class="rallyvalue">23</p>
+        </div>
+        <div class="shotspeed">
+            LAST SHOT SPEED
+            <p class="speedvalue">47</p>
+            <p class="kmph">km/h</p>
+        </div>
+
+    </div>
+    <script>
+        nodecg.listenFor('Reload_All', ()=>{
+            window.location.reload(true)
+        })
+        var t1 = gsap.timeline({paused:false})
+        const RallyCount = nodecg.Replicant('RallyCount');
+        const ShotSpeed = nodecg.Replicant('ShotSpeed');
+        const PrimaryColor = nodecg.Replicant('PrimaryColour')
+		const DarkerColor = nodecg.Replicant('DarkerColour')
+        PrimaryColor.on('change', value => {
+            document.querySelector('.rallycount').style.border = `2px solid ${PrimaryColor.value}`
+            document.querySelector('.shotspeed').style.border = `2px solid ${PrimaryColor.value}`
+            document.querySelector('.rallycount').style.borderBottom = `1px solid ${PrimaryColor.value}`
+            document.querySelector('.shotspeed').style.borderBottom = `1px solid ${PrimaryColor.value}`
+            document.querySelector('.rallycount').style.borderLeftWidth = `10px`
+            document.querySelector('.shotspeed').style.borderLeftWidth = `10px`
+            // document.querySelector('.rallycount, .shotspeed').style.borderImage = `-webkit-gradient(linear, left top, left bottom, from(${PrimaryColor.value}), to(${DarkerColor.value}))100 100% 0 20% stretch`
+        })
+        // DarkerColor.on('change', value => {
+        //     document.querySelector('table').style.borderImage = `-webkit-gradient(linear, left top, left bottom, from(${PrimaryColor.value}), to(${DarkerColor.value}))100 100% 0 20% stretch`
+        // })
+
+
+        
+        nodecg.listenFor('triggerRallyGraphic', ()=>{
+            document.querySelector('.rallyvalue').innerHTML = String(RallyCount.value)
+            document.querySelector('.speedvalue').innerHTML = String(ShotSpeed.value)
+            t1.fromTo('.rallycount',1,{width:0,opacity:0},{width:'auto',opacity:1,ease:Elastic.easeOut.config(1,0.75)})
+            t1.to('.rallycount',0.5,{delay:3,width:0,opacity:0,ease:Power4.easeOut})
+            t1.fromTo('.shotspeed',1,{width:0,opacity:0},{width:'auto',opacity:1,ease:Elastic.easeOut.config(1,0.75)})
+            t1.to('.shotspeed',0.5,{delay:3,width:0,opacity:0,ease:Power4.easeOut})
+            })        
+    </script>
+</body>
+
+</html>

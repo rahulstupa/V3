@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	
+	<style>
+		body {
+			background-color: rgb(61, 61, 61);
+			padding: 1%;
+			font-family: 'Rubik', sans-serif;
+
+		}
+		.monospace {
+			font-family: monospace;
+		}
+		#matchid {
+			width: 100px;
+			margin-top: 6px;
+		}
+		.idlabel {
+			font-size: 15px;
+		}
+		
+	</style>
+</head>
+<body>
+	<form id="update-matchid">
+		<label for="matchid" class="idlabel">Enter the Match ID</label>
+		<!-- <hr style="height:3%;width:72%;background-color:#8A0707;text-align:left;margin-left:0"> -->
+		<br>
+		<input id="matchid">
+		<button type="submit">Update</button>
+	</form>
+	<script>
+		const MatchID = nodecg.Replicant('MatchID');
+		const form = document.getElementById('update-matchid')
+		const textBox = document.getElementById('matchid')
+		MatchID.on('change', value=>{
+			document.getElementById('matchid').value = MatchID.value
+		});		
+		form.addEventListener('submit', e =>{
+			e.preventDefault()
+			MatchID.value = textBox.value
+		});
+	</script>
+</body>
+</html>

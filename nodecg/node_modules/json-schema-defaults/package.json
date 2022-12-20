@@ -1,0 +1,46 @@
+{
+  "name": "json-schema-defaults",
+  "version": "0.4.0",
+  "description": "Generate JSON object from default values in JSON Schema",
+  "homepage": "https://github.com/chute/grunt-json-schema-defaults",
+  "author": {
+    "name": "Chute",
+    "email": "hello@getchute.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chute/json-schema-defaults.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chute/json-schema-defaults/issues"
+  },
+  "main": "index.js",
+  "bin": {
+    "json-schema-defaults": "bin/defaults.js"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node test/ && ./node_modules/karma/bin/karma start --single-run"
+  },
+  "keywords": [
+    "json",
+    "schema"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.8.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-conventional-changelog": "^6.1.0",
+    "jasmine-core": "^2.6.2",
+    "jasmine-node": "^1.14.5",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4"
+  },
+  "dependencies": {
+    "argparse": "^1.0.9"
+  }
+}

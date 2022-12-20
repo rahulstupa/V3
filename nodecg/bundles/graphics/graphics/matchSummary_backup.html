@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <link href="//db.onlinewebfonts.com/c/9cd8561e420a88f077a6af670733882b?family=Prometo" rel="stylesheet"
+        type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+
+    <title>MATCH-SUMMARY</title>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    body {
+        /* change background here */
+        background: transparent;
+
+        margin: 0;
+        padding: 0;
+        position: relative;
+
+        /* change font size, font and font boldness from here*/
+        font-size: 1.9vw;
+        font-family: "Prometo" !important;
+        font-weight: 200 !important;
+
+        line-height: 5vh;
+        color: white;
+
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .sumary_details {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    #PlayerAName {
+        left: 9vw;
+        position: absolute;
+        top: 7.5vh;
+        font-size: 2.1vw !important;
+    }
+
+    #playerAName p,
+    #playerBName p {
+        text-overflow: ellipsis;
+        max-width: 285px;
+        overflow: hidden;
+    }
+
+    #PlayerBName {
+        left: 77vw;
+        position: absolute;
+        top: 7.5vh;
+        font-size: 2.1vw !important;
+
+    }
+
+    #TotalServeA {
+        left: 6vw;
+        position: absolute;
+        top: 31vh;
+        width: 12.5vw;
+        height: 8.7vh;
+
+    }
+
+    #TotalServeB {
+        left: 81.2vw;
+        position: absolute;
+        top: 31vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #ServeWinA {
+        left: 6vw;
+        position: absolute;
+        top: 41.7vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #ServeWinB {
+        left: 81.2vw;
+        position: absolute;
+        top: 41.7vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #TotalReceiveA {
+        left: 6vw;
+        position: absolute;
+        top: 52.5vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #TotalReceiveB {
+        left: 81.2vw;
+        position: absolute;
+        top: 52.5vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #ReceiveWinA {
+        left: 5.9vw;
+        position: absolute;
+        top: 63.4vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #ReceiveWinB {
+        left: 81.2vw;
+        position: absolute;
+        top: 63.4vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #ServeSpeedA {
+        left: 5.9vw;
+        position: absolute;
+        top: 74vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    #ServeSpeedB {
+        left: 81.2vw;
+        position: absolute;
+        top: 74vh;
+        width: 12.5vw;
+        height: 8.7vh;
+    }
+
+    .image_overlay {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #TotalServeA p,
+    #TotalServeB p,
+    #ServeWinA p,
+    #ServeWinB p,
+    #TotalReceiveA p,
+    #TotalReceiveB p,
+    #ReceiveWinA p,
+    #ReceiveWinB p,
+    #ServeSpeedA p,
+    #ServeSpeedB p {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+ 
+    #holder, #game_bg{
+        width: 100%;
+        height: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #holder{
+        opacity: 0;
+    }
+    #match_bg{
+        opacity: 0;
+    }
+    #heatmap, #heatmap_label{
+        width: 100%;
+        height: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    
+    .combine{
+        opacity: 0;
+    }
+
+</style>
+
+<!-- all the position are arranged from left & bottom position -->
+
+<body>
+    <img src="match_bg.png" id="match_bg">
+    <div id="holder">
+        <img src="Total.png" id="heatmap_label">
+        <img src="match_heatmap.png" id="heatmap">
+    </div>
+    <img src="./MATCH-SUMMARY.png" loading="eager" class="image_overlay combine">
+    <div class="sumary_details combine">
+        <div id="PlayerAName">
+            <p>PLayerADATA</p>
+        </div>
+        <div id="PlayerBName">
+            <p>PLayerBDATA</p>
+        </div>
+        <div id="TotalServeA">
+            <p>TotalServeA</p>
+        </div>
+        <div id="TotalServeB">
+            <p>TotalServeB</p>
+        </div>
+        <div id="ServeWinA">
+            <p>ServeWinA</p>
+        </div>
+        <div id="ServeWinB">
+            <p>ServeWinB</p>
+        </div>
+        <div id="TotalReceiveA">
+            <p>TotalReceiveA</p>
+        </div>
+        <div id="TotalReceiveB">
+            <p>TotalReceiveB</p>
+        </div>
+        <div id="ReceiveWinA">
+            <p>ReceiveWinA</p>
+        </div>
+        <div id="ReceiveWinB">
+            <p>ReceiveWinB</p>
+        </div>
+        <div id="ServeSpeedA">
+            <p>ServeSpeedA</p>
+        </div>
+        <div id="ServeSpeedB">
+            <p>ServeSpeedB</p>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    const PLayerADATA = nodecg.Replicant('PLayerADATA');
+    const PLayerBDATA = nodecg.Replicant('PLayerBDATA');
+    const MatchTotalServesA = nodecg.Replicant('MatchTotalServesA')
+	const MatchTotalServesWinA = nodecg.Replicant('MatchTotalServesWinA')
+	const MatchTotalReceivesA = nodecg.Replicant('MatchTotalReceivesA')
+	const MatchTotalReceivesWinA = nodecg.Replicant('MatchTotalReceivesWinA')
+	const MatchAvgServeSpeedA = nodecg.Replicant('MatchAvgServeSpeedA')
+	const MatchTotalServesB = nodecg.Replicant('MatchTotalServesB')
+	const MatchTotalServesWinB = nodecg.Replicant('MatchTotalServesWinB')
+	const MatchTotalReceivesB = nodecg.Replicant('MatchTotalReceivesB')
+	const MatchTotalReceivesWinB = nodecg.Replicant('MatchTotalReceivesWinB')
+	const MatchAvgServeSpeedB = nodecg.Replicant('MatchAvgServeSpeedB')
+    image = document.getElementById('heatmap')
+    image_label = document.getElementById('heatmap_label')
+    const names = ["match_heatmap.png", "match_service_heatmap.png", "match_third_heatmap.png", "match_winning_heatmap.png"]
+    const labels = ["Total.png", "Serves.png", "3rd-Ball.png", "Winner.png"]
+    nodecg.listenFor('triggerMatchHeatmaps', ()=>{
+            loopcount = 0
+            let heatmapAnimation = anime({
+            targets: '#holder',
+            opacity: [{value: 1, duration:500},
+                      {value: 0, delay:2000, duration: 500}],
+            easing: 'linear',
+            loop: 4,
+            loopBegin: function(anim){
+                console.log(image.src, image_label.src)
+                splitted = image.src.split('/')
+                splitted_label = image_label.src.split('/')
+                splitted.pop(-1)
+                splitted_label.pop(-1)
+                splitted.push(names[loopcount])
+                splitted_label.push(labels[loopcount])
+                var timestamp = new Date().getTime();
+                image.src = splitted.join('/') + "?t=" + timestamp;
+                image_label.src = splitted_label.join('/') + "?t=" + timestamp; 
+                loopcount+=1 
+            },
+            update: function(anim) {
+                if(anim.progress==100 && loopcount==3){
+                    let animation = anime({
+                        targets: '#match_bg',
+                        // Properties 
+                        opacity: [{value: 0, delay:2500, duration:500},],
+                        easing: 'linear',
+                        })
+                    document.querySelector('#PlayerAName p').innerHTML = PLayerADATA.value
+                    document.querySelector('#TotalServeA p').innerHTML = GameTotalServesA.value
+                    document.querySelector('#ServeWinA p').innerHTML = GameTotalServesWinA.value
+                    document.querySelector('#TotalReceiveA p').innerHTML = GameTotalReceivessA.value
+                    document.querySelector('#ReceiveWinA p').innerHTML = GameTotalReceivesWinA.value
+                    document.querySelector('#ServeSpeedA p').innerHTML = GameAvgServeSpeedA.value
+                    
+                    document.querySelector('#PlayerBName p').innerHTML = PLayerBDATA.value
+                    document.querySelector('#TotalServeB p').innerHTML = GameTotalServesB.value
+                    document.querySelector('#ServeWinB p').innerHTML = GameTotalServesWinB.value
+                    document.querySelector('#TotalReceiveB p').innerHTML = GameTotalReceivesB.value
+                    document.querySelector('#ReceiveWinB p').innerHTML = GameTotalReceivesWinB.value
+                    document.querySelector('#ServeSpeedB p').innerHTML = GameAvgServeSpeedB.value
+
+                    let gameSummaryAnimation = anime({
+                        targets: '.combine',
+                        opacity: [{value: 1,delay:2500, duration:500},
+                                {value: 0, delay:10000, duration: 500}],
+                        easing: 'linear',
+                        })
+                }
+            }
+            })
+            let animation = anime({
+            targets: '#match_bg',
+            // Properties 
+            opacity: [{value: 1, duration:500},],
+                    //   {value: 0, delay:10000, duration: 500}],
+            easing: 'linear',
+            })
+        })
+</script>
+</html>

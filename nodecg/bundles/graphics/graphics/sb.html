@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <link href="//db.onlinewebfonts.com/c/9cd8561e420a88f077a6af670733882b?family=Prometo" rel="stylesheet"
+        type="text/css" />
+    <link href="//db.onlinewebfonts.com/c/c47f6a0433261050bfb52b5a9f1bccf4?family=PrometoW02-Md" rel="stylesheet"
+        type="text/css" />
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    @font-face {
+        font-family: "PrometoW02-Md";
+        src: url("//db.onlinewebfonts.com/t/c47f6a0433261050bfb52b5a9f1bccf4.eot");
+        src: url("//db.onlinewebfonts.com/t/c47f6a0433261050bfb52b5a9f1bccf4.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/c47f6a0433261050bfb52b5a9f1bccf4.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/c47f6a0433261050bfb52b5a9f1bccf4.woff") format("woff"), url("//db.onlinewebfonts.com/t/c47f6a0433261050bfb52b5a9f1bccf4.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/c47f6a0433261050bfb52b5a9f1bccf4.svg#PrometoW02-Md") format("svg");
+    }
+
+
+    body {
+        /* change background here */
+        background: transparent;
+        /* change font size, font and font boldness from here*/
+        font-size: 1.5vw;
+        font-family: "Prometo" !important;
+        font-weight: 200 !important;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        /* changes size of image by giving width*/
+        position: absolute;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        bottom: 2vh;
+    }
+
+    .container_fluid {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+
+    .PLayerADATA {
+        position: absolute;
+        z-index: 1;
+        bottom: 8.7vh;
+        left: 25.5vw;
+        display: flex;
+        align-items: center;
+        width: 16.5vw;
+        height: 5vh;
+    }
+
+    .serveA {
+        position: absolute;
+        left: 37vw;
+        bottom: 10vh;
+        font-size: 5vw !important;
+        color: #d71e2d;
+    }
+
+    .serveB {
+        position: absolute;
+        right: 37vw;
+        bottom: 10vh;
+        font-size: 5vw !important;
+        color: #d71e2d;
+    }
+
+    .PLayerBDATA {
+        position: absolute;
+        z-index: 1;
+        bottom: 8.7vh;
+        left: 58.5vw;
+        display: flex;
+        align-items: center;
+        width: 16.5vw;
+        height: 5vh;
+        overflow: hidden;
+    }
+
+    /* .PlayerASetScoreDATA {
+        left: 26.3vw;
+        bottom: 11.5vh;
+        width: 3.5vw;
+        height: 6.9vh;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .PlayerBSetScoreDATA {
+        left: 26.3vw;
+        bottom: 4.5vh;
+        width: 3.5vw;
+        height: 6.9vh;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+    } */
+
+    /* .PlayerASetScoreDATA p,
+    .PlayerBSetScoreDATA p, */
+    .PLayerADATA p,
+    .PLayerBDATA p,
+    .TotalPointA p,
+    .TotalPointB p,
+    .PlayerAGameScoreDATA p,
+    .PlayerBGameScoreDATA p,
+    .dash p {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .PLayerADATA p,
+    .PLayerBDATA p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1.8vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+        width: 19vw;
+    }
+
+    .TotalPointA {
+        left: 17.3vw;
+        bottom: 4.7vh;
+        width: 8.1vw;
+        font-size: 1.8vw;
+        height: 9.2vh;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+
+    }
+
+    .TotalPointB {
+        left: 74.55vw;
+        bottom: 4.7vh;
+        width: 8.1vw;
+        font-size: 1.8vw;
+        height: 9.2vh;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .board_summary {
+        max-width: 40vw;
+        overflow: hidden;
+    }
+
+    .scoreboard {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /* change whole scoreboard position from here */
+        left: 0;
+        bottom: 0;
+    }
+
+    .dash {
+        bottom: 4.7vh;
+        position: absolute;
+        left: 44.6vw;
+        height: 10.3vh;
+        width: 11vw;
+        font-size: 2.5vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+    }
+
+    .PlayerAGameScoreDATA {
+        bottom: 4.7vh;
+        position: absolute;
+        left: 44.5vw;
+        height: 10.3vh;
+        width: 5vw;
+        font-size: 4vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+    }
+
+    .TotalPointA {
+        font-size: 4vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+    }
+
+    .TotalPointB {
+        font-size: 4vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+    }
+
+    .PlayerBGameScoreDATA {
+        bottom: 4.7vh;
+        position: absolute;
+        left: 50.7vw;
+        height: 10.3vh;
+        width: 5vw;
+        font-size: 4vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+    }
+
+    /* .PLayerADATA p,
+    .PLayerBDATA p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1.8vw;
+        font-family: 'PrometoW02-Md' !important;
+        letter-spacing: 0.1vw;
+        width: 19vw;
+        left: 1.8vw;
+        position: absolute;
+    } */
+</style>
+
+<!-- all the position are arranged from left & bottom position -->
+
+<body>
+    <div class="container_fluid">
+        <div class="scoreboard">
+            <img src="./SCORE-BOARD---NEW-LANDSCAPE (1).png" loading="eager" alt="">
+            <div class="board_summary">
+
+                <div class="PLayerADATA">
+                    <p>PLayerADATA</p>
+                </div>
+                <div class="PLayerBDATA">
+                    <p>PLayerBDATA</p>
+                </div>
+                <!-- <div class="PlayerASetScoreDATA">
+                    <p>PlayerASetScoreDATA</p>
+                </div>
+                <div class="PlayerBSetScoreDATA">
+                    <p>PlayerBSetScoreDATA</p>
+                </div> -->
+                <div class="PlayerAGameScoreDATA">
+                    <p>PlayerAGameScoreDATA</p>
+                </div>
+                <div class="PlayerBGameScoreDATA">
+                    <p>PlayerBGameScoreDATA</p>
+                </div>
+                <div class="TotalPointA">
+                    <p>TotalPointA</p>
+                </div>
+                <div class="dash">
+                    <p>-</p>
+                </div>
+                <div class="TotalPointB">
+                    <p>TotalPointB</p>
+                </div>
+                <div class="serveA">
+                    <p>.</p>
+                </div>
+                <div class="serveB">
+                    <p>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+		const PLayerADATA = nodecg.Replicant('PLayerADATA');
+		PLayerADATA.on('change', value=>{
+			document.querySelector('.PLayerADATA p').innerHTML = value
+		})
+		const PLayerBDATA = nodecg.Replicant('PLayerBDATA');
+		PLayerBDATA.on('change', value=>{
+			document.querySelector('.PLayerBDATA p').innerHTML = value
+		})
+		// const PlayerASetScoreDATA = nodecg.Replicant('PlayerASetScoreDATA');
+		// PlayerASetScoreDATA.on('change', value=>{
+		// 	document.querySelector('.PlayerASetScoreDATA p').innerHTML = value
+		// })
+		// const PlayerBSetScoreDATA = nodecg.Replicant('PlayerBSetScoreDATA');
+		// PlayerBSetScoreDATA.on('change', value=>{
+		// 	document.querySelector('.PlayerBSetScoreDATA p').innerHTML = value
+		// })
+        const TeamScoreA = nodecg.Replicant('TeamScoreA',)
+        TeamScoreA.on('change', value=>{
+            document.querySelector('.TotalPointA p').innerHTML = value
+        })
+        const TeamScoreB = nodecg.Replicant('TeamScoreB',)
+        TeamScoreB.on('change', value=>{
+            document.querySelector('.TotalPointB p').innerHTML = value
+        })
+
+		const PlayerAGameScoreDATA = nodecg.Replicant('PlayerAGameScoreDATA');
+		PlayerAGameScoreDATA.on('change', value=>{
+			document.querySelector('.PlayerAGameScoreDATA p').innerHTML = value
+		})
+		const PlayerBGameScoreDATA = nodecg.Replicant('PlayerBGameScoreDATA');
+		PlayerBGameScoreDATA.on('change', value=>{
+			document.querySelector('.PlayerBGameScoreDATA p').innerHTML = value
+		})
+        const PlayerServing = nodecg.Replicant('PlayerServing');
+        PlayerServing.on('change', value=>{
+            if(value==="ServeA"){
+                document.querySelector('.serveA p').innerHTML = '.'
+                document.querySelector('.serveB p').innerHTML = ''
+            }
+            else{
+                document.querySelector('.serveB p').innerHTML = '.'
+                document.querySelector('.serveA p').innerHTML = ''
+            }
+        })
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<style>
+		body {
+			background-color: rgb(61, 61, 61);
+			padding: 1%;
+			margin: 8px;
+			
+		}
+		.monospace {
+			font-family: monospace;
+		}
+		.btn {
+			margin: 1%;
+		}
+		.checkbox {
+			position : relative ;
+			display : inline-block;
+			width : 25px;
+			height : 20px;
+			background-color: red;
+			border-radius: 30px;
+			border: 2px solid gray;
+		}
+		label {
+			color: white;
+			font-family: 'Rubik', sans-serif;
+			position: absolute;
+			margin-top: -1.5px;
+			margin-left: 4px;
+        }
+
+	</style>
+</head>
+<body>
+	<form id="update-switches">
+		<input onclick=Gscore_Switch() class="checkbox Gscore" value="1" type="checkbox">
+		<label for="Gscore">Game Score In & Out</label>
+		<hr>
+		<input class="checkbox Tout" type="checkbox">
+		<label for="Tout">Winner Highlight</label>
+		<hr>
+		<input class="checkbox Serve" type="checkbox">
+		<label for="Serve">Service Display</label>
+		
+	</form>
+	<script>
+		var Gscore = document.getElementsByClassName('Gscore[type="checkbox"]')
+		const Gscore_Switch = () => {
+			console.log(Gscore.checked)
+			if (Gscore.checked) {
+					console.log("Checkbox is checked..");
+				} else {
+					console.log("Checkbox is not checked..");
+				}
+		}		
+
+	
+		const setstartTrigger = () => {
+			nodecg.sendMessage('triggerSetstart')
+		}
+		
+
+		
+	</script>
+</body>
+</html>

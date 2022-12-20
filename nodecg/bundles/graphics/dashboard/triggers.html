@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: rgb(61, 61, 61);
+			padding: 2%;
+			display: flex;
+			
+		}
+		.monospace {
+			font-family: monospace;
+		}
+		.btn {
+			margin: 1%;
+		}
+		button {
+			display: flex;
+			position: relative;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<form id="update-matchid">
+	
+		<button onclick=scoreTrigger() class="btn btn-secondary btn-sm">Score Trigger</button>
+		<button onclick=setstartTrigger() class="btn btn-secondary btn-sm">Set Start Trigger</button>
+		<button onclick=setfinishTrigger() class="btn btn-secondary btn-sm">Set Finish Trigger</button>
+		<button onclick=rallyCountTrigger() class="btn btn-secondary btn-sm">Rally Count Trigger</button>
+		<hr>
+		<button onclick=pitchTrigger() class="btn btn-secondary btn-sm">Pitch Trigger</button>
+		<button onclick=setTrigger() class="btn btn-secondary btn-sm">Game Stats Trigger</button>
+		<button onclick=matchTrigger() class="btn btn-secondary btn-sm">Match Stats Trigger</button>
+		<hr>
+		<button onclick=Reload_AllTrigger()>Reload All Pages</button>
+
+
+		
+	</form>
+	<script>
+		function randomNumber(minimum, maximum){
+			return Math.round( Math.random() * (maximum - minimum) + minimum);
+		}
+
+		const setTrigger = () => {
+			nodecg.sendMessage("triggerSetHeatmaps")
+		}
+		const matchTrigger = () => {
+			nodecg.sendMessage("triggerMatchHeatmaps")
+		}
+		
+		const pitchTrigger = () => {
+			nodecg.sendMessage('showPitches', {"pitch":[randomNumber(0,1920), randomNumber(0,1080)]})
+		}
+		const scoreTrigger = () => {
+			nodecg.sendMessage('matchStart')
+		}
+		const setfinishTrigger = () => {
+			nodecg.sendMessage('triggerSetfinish')
+		}
+		const setstartTrigger = () => {
+			nodecg.sendMessage('triggerSetstart')
+		}
+		const rallyCountTrigger = () => {
+			nodecg.sendMessage('triggerRallyGraphic')
+		}
+		const Reload_AllTrigger = () => {
+			nodecg.sendMessage('Reload_All')
+		}
+		
+
+		
+	</script>
+</body>
+</html>

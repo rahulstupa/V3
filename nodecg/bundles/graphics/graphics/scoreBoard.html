@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    @font-face {
+    font-family: 'Prometo';
+    src: url('./fonts/Prometo-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBoldItalic.ttf') format('truetype');
+        font-weight: 800;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-ThinItalic.ttf') format('truetype');
+        font-weight: 100;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Black.ttf') format('truetype');
+        font-weight: 900;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Thin.ttf') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-XBold.ttf') format('truetype');
+        font-weight: 800;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/Prometo-BlackItalic.ttf') format('truetype');
+        font-weight: 900;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Prometo';
+        src: url('./fonts/rometo.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+
+    body {
+        /* change background here */
+        background: transparent;
+        font-size: 1.5vw;
+        font-weight: 700;
+        font-family: "Prometo" !important;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        /* changes size of image by giving width*/
+        /* width: 31vw;
+        height: 28vh;
+        left: 2vw; */
+        /* bottom: -8vh; */
+        position: absolute;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .container_fluid {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        left: 65px;
+        bottom: 10px;
+        position: relative;
+    }
+
+    .PLayerADATA {
+        font-weight: 200;
+        position: absolute;
+        z-index: 1;
+        bottom: 9.5vh;
+        left: 2.5vw;
+        display: flex;
+        align-items: center;
+        width: 20vw;
+        height: 5vh;
+        overflow: hidden;
+    }
+    .PLayerBDATA {
+        font-weight: 200;
+        left: 2.5vw;
+        bottom: 3.7vh;
+        max-width: 20vw;
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        height: 5vh;
+        overflow: hidden;
+    }
+    .PLayerADATA p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 1.6vw;
+        white-space: nowrap;
+        opacity: 0;
+    }
+    .PLayerBDATA p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 1.6vw;
+        white-space: nowrap;
+        opacity: 0;
+
+    }
+    .serveA {
+        font-size: 4.3vw !important;
+        font-weight: 800;
+        position: relative;
+        margin-bottom: 3.5vh;
+        display: block;
+        margin-left: -0.5vw;
+        border-width: 5px;
+        border-color: #36D6FE;
+        border-radius: 50px;
+        color: white;
+        opacity: 0;
+    }
+    .serveB {
+        font-size: 4.3vw !important;
+        font-weight: 800;
+        margin-bottom: 3.5vh;
+        position: relative;
+        display: block;
+        margin-left: -0.5vw;
+        border-width: 5px;
+        border-color: #36D6FE;
+        border-radius: 50px;
+        color: white;
+        opacity: 0;
+    }
+    .PlayerASetScoreDATA {
+        font-weight: 800;
+        left: 20.19vw;
+        bottom: 8.6vh;
+        width: 3.5vw;
+        height: 6.9vh;
+        color: black;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+    }
+    .PlayerBSetScoreDATA {
+        font-weight: 800;
+        left: 20.19vw;
+        bottom: 2.6vh;
+        width: 3.5vw;
+        height: 6.9vh;
+        color: black;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+    }
+    .PlayerASetScoreDATA p,
+    .PlayerBSetScoreDATA p,
+    .PlayerAGameScoreDATA p,
+    .PlayerBGameScoreDATA p {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+    }
+    .PlayerAGameScoreDATA {
+        font-weight: 200;
+        left: 23.2vw;
+        bottom: 8.6vh;
+        width: 3.2vw;
+        height: 6.9vh;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+    }
+    .PlayerBGameScoreDATA {
+        font-weight: 200;
+        left: 23.2vw;
+        bottom: 2.6vh;
+        width: 3.2vw;
+        height: 6.9vh;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+        
+    }
+    .board_summary {
+        max-width: 45vw;
+        overflow: hidden;
+    }
+    .scoreboard {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /* change whole scoreboard position from here */
+        left: 0;
+        bottom: 0;
+        opacity: 1;
+    }
+    .smallboard {
+        position: absolute;
+        border: 0px solid ;
+        border-color: #36D6FE;
+        border-left-width: 0px;
+        border-radius: 4px;
+        width: 0px;
+        height: 120px;
+        bottom: 40px;
+        left: 50px;
+        /* display: flex; */
+        justify-content: center;
+        background-color: rgb(0, 0, 0);
+        opacity: 0;
+    }
+    .linesboard {
+        position: absolute;
+        width: 0px;
+        height: 1px;
+        bottom: 100px;
+        left: 50px;
+        /* display: flex; */
+        justify-content: center;
+        background:linear-gradient( to left, #a0a0a0, #a0a0a0,#a0a0a0);
+        box-shadow: 0px 0px 10px 0.05px rgba(255, 255, 255, 0.3);
+        opacity: 0
+    }
+    .scoreonlyu, .scoreonlyd {
+        position: absolute;
+        width: 300px;
+        height: 120px;
+        bottom: 40px;
+        /* display: flex; */
+        justify-content: center;
+        background-color: #36D6FE;
+        opacity: 0;
+    }
+    .scoreonlyd {
+        left: 10;
+    }
+    .scoreonlyu {
+        left: 0;
+    }
+    .gamepoint {
+        border: 0px solid #36D6FE;
+        border-left-width: 10px;
+        border-radius: 4px;
+        position: absolute;
+        width: auto;
+        height: 43px;
+        bottom: 113px;
+        left: 20px;
+        background-color: #000000;
+        font-size: 25px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 15px;
+        padding-bottom: 3px;
+        opacity: 0;
+
+    }
+    .Atimeout, .Btimeout {
+        position: fixed;
+        padding-bottom: 4px;
+        left: 25px;
+        opacity:0
+    }
+</style>
+
+<!-- all the position are arranged from left & bottom position -->
+
+<body>
+    <!-- <img style="position:absolute;" src="wtt_hall_reference.png" alt=""> -->
+    <div class="container_fluid">
+        <div class="gamepoint">GAME POINT</div>
+        <div class="smallboard"></div>
+        <div class="scoreonlyu"></div>
+        <div class="scoreonlyd"></div>
+        <div class="linesboard"></div>
+        <div class="scoreboard">
+            <!-- <img style='opacity: 0;'src="./SCORE-BOARD.png" loading="eager" alt=""> -->
+            <div class="board_summary">
+
+                <div class="PLayerADATA">
+                    <p>PLayerADATA</p>
+                    <span class="serveA"></span>
+                    <box-icon class='Atimeout' name='time-five' color='#ffffff' size="lg" ></box-icon>
+                </div>
+                <div class="PLayerBDATA">
+                    <p>PLayerBDATA</p>
+                    <span class="serveB"></span>
+                    <box-icon class='Btimeout' name='time-five' color='#ffffff' size="lg" ></box-icon>
+                </div>
+                <div class="PlayerASetScoreDATA">
+                    <p>S</p>
+                </div>
+                <div class="PlayerBSetScoreDATA">
+                    <p>S</p>
+                </div>
+                <div class="PlayerAGameScoreDATA">
+                    <p>13</p>
+                </div>
+                <div class="PlayerBGameScoreDATA">
+                    <p>10</p>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script>
+        nodecg.listenFor('Reload_All', ()=>{
+            window.location.reload(true)
+        })     
+        var Ascores = []
+        var Bscores = []
+        var Agamescores = []
+        var Bgamescores = []
+        const FinalSet = nodecg.Replicant('FinalSet')
+        const FinalPoint = nodecg.Replicant('FinalPoint')
+        const PlayingStatus = nodecg.Replicant('Status')
+        const GscoreSW = nodecg.Replicant('GscoreSW')
+        const ToutSW = nodecg.Replicant('ToutSW')
+        const ServeSW = nodecg.Replicant('ServeSW')
+        const Acustomname = nodecg.Replicant('Acustomname');
+        const Bcustomname = nodecg.Replicant('Bcustomname');
+		const ManualNamesSW = nodecg.Replicant('ManualNamesSW')
+        const PlayerASetScoreDATA = nodecg.Replicant('PlayerASetScoreDATA',)
+    	const PlayerBSetScoreDATA = nodecg.Replicant('PlayerBSetScoreDATA',)
+        
+                
+		const PrimaryColor = nodecg.Replicant('PrimaryColour')
+		const DarkerColor = nodecg.Replicant('DarkerColour')
+        PrimaryColor.on('change', value=>{
+            document.querySelector('.smallboard').style.borderColor = PrimaryColor.value 
+            document.querySelector('.gamepoint').style.borderColor = PrimaryColor.value 
+            document.querySelector('.scoreonlyu').style.backgroundColor = PrimaryColor.value 
+            document.querySelector('.scoreonlyd').style.backgroundColor = PrimaryColor.value 
+        })
+
+        var t1 = gsap.timeline({paused: true})
+        t1.to('.scoreonlyu',1, {opacity:1,delay:0.5,left:395,width:53, ease:Power2.easeOut,});
+        t1.to('.scoreonlyd',1, {opacity:0.3,left: 395,width:53,delay:0.3,ease:Power2.easeOut,},'<');
+        t1.to('.smallboard',0.5, {opacity:1,left:20,width:390,ease:Power2.easeOut,},'<');
+        t1.to('.linesboard',0.5, {opacity:1,left:20,width:427,ease:Power2.easeOut,},'<');
+        t1.to('.smallboard',0.5, {'border-left-width':10,ease:Power2.easeOut,},'<');
+        t1.fromTo('.PLayerADATA p, .PlayerASetScoreDATA p',0.5,{translateY:-40},{opacity:1,delay:0.3,translateY:0, ease:Power2.easeOut,},'<');
+        t1.fromTo('.PLayerBDATA p, .PlayerBSetScoreDATA p',0.5, {translateY:40},{opacity:1,translateY:0, ease:Power2.easeOut,},'<');
+        t1.to('.smallboard',0.5, {width:483,ease:Power2.easeOut,},'<');
+        t1.to('.linesboard',0.5, {width:484,ease:Power2.easeOut,},'<');
+        t1.to('.PlayerBGameScoreDATA p, .serveB, .PlayerAGameScoreDATA p, .serveA',1.2, {delay:0.3,opacity:1, ease:Power2.easeOut,},'<');
+        t1.to('.PlayerAGameScoreDATA p, .serveA',1.2, {opacity:1, ease:Power2.easeOut,},'<');       
+        // console.log('Scoreboard Animation Complete')
+        
+        var t2 = gsap.timeline({paused: true})
+        t2.to('.serveA, .serveB',0.5, {opacity:0,'font-size':0, ease:Power2.easeOut,},'<');
+        t2.to('.smallboard',1, {delay:2,width:390,ease:Power2.easeOut,},);
+        t2.to('.linesboard',0.5, {width:427,ease:Power2.easeOut,},'<');
+        t2.to('.PlayerBGameScoreDATA p, .PlayerAGameScoreDATA p',0.5, {opacity:0,translateX:-50, ease:Power2.easeOut,},'<');
+        
+        var t3 = gsap.timeline({paused: false})
+
+        nodecg.listenFor('matchStart', ()=>{
+            t1.play()
+        })
+        nodecg.listenFor('triggerSetstart', ()=>{
+            t1.timeScale(1.8).play()
+            
+            // setTimeout(() => {
+            //     t3.to('.gamepoint', 0.7, { opacity: 1, yPercent: -100, ease: Power2.easeOut });
+            // }, 4000);
+
+            console.log('Setstart Animation Complete')
+            // t3.to('.container_fluid',1,{xPercent:0,opacity:1,ease:Elastic.easeOut.config(1,0.3)});
+            // if (GscoreSW.value == true) {
+                //     t3.to('.PLayerADATA p, .PLayerBDATA p',1,{color:'#FFFFFF',ease:'power3.out'})
+                // }
+            })
+            nodecg.listenFor('triggerSetfinish', ()=>{
+            t2.play()
+            t3.to('.container_fluid, .Atimeout, .Btimeout',0.3,{delay:5,xPercent:-2,opacity:0,ease:Power2.easeOut});
+            nodecg.sendMessage('triggerScoreSummary')
+            setTimeout(() => {
+                window.location.reload(true)
+            }, 6500);
+            Ascores.push(PlayerAGameScoreDATA.value)
+            Bscores.push(PlayerBGameScoreDATA.value)    
+            // if (GscoreSW.value == true) {
+                //     if (PlayerAGameScoreDATA.value > PlayerBGameScoreDATA.value) {
+            //         t3.to('.PLayerADATA p',1,{color:'#36D6FE'})
+            //     } else {
+            //         t3.to('.PLayerBDATA p',1,{color:'#36D6FE'})
+            //     }
+            // }
+        })
+        nodecg.listenFor('triggerMatchfinish', ()=>{
+            t1.reverse()
+            t3.to('.gamepoint, .Btimeout, .Atimeout',0.5,{opacity:0,ease:Power2.easeOut},'<');
+            Ascores = []
+            Bscores = []
+            console.log(Ascores.length)
+            console.log(Bscores.length)
+
+            console.log('Matchfinish Animation Complete')
+            
+        })
+        
+        nodecg.listenFor('triggerAtimeout', ()=>{
+            if (ToutSW.value == true) {
+                t3.to('.Atimeout',1,{delay:1,opacity:1,ease:'power3.out'})
+            } else {
+                t3.to('.Atimeout, .Btimeout',1,{opacity:0,ease:'power3.out'})
+            }
+        })
+        nodecg.listenFor('triggerBtimeout', ()=>{
+            if (ToutSW.value == true) {
+                t3.to('.Btimeout',1,{delay:1,opacity:1,ease:'power3.out'})
+            } else {
+                t3.to('.Atimeout, .Btimeout',1,{opacity:0,ease:'power3.out'})
+            }
+        })
+        
+        ManualNamesSW.on('change', value=>{
+            ManualNamesSW.value = value
+            if (ManualNamesSW.value == true) {
+                document.querySelector('.PLayerADATA p').innerHTML = Acustomname.value
+                document.querySelector('.PLayerBDATA p').innerHTML = Bcustomname.value
+            } else {
+                document.querySelector('.PLayerADATA p').innerHTML = PLayerADATA.value
+                document.querySelector('.PLayerBDATA p').innerHTML = PLayerBDATA.value
+            }
+        })
+        Acustomname.on('change', value=>{
+            Acustomname.value = value
+            if (ManualNamesSW.value == true) {
+                document.querySelector('.PLayerADATA p').innerHTML = Acustomname.value
+            }
+        })
+        Bcustomname.on('change', value=>{
+            Bcustomname.value = value
+            if (ManualNamesSW.value == true) {
+                document.querySelector('.PLayerBDATA p').innerHTML = Bcustomname.value
+            }
+            
+        })
+        const PLayerADATA = nodecg.Replicant('PLayerADATA');
+        PLayerADATA.on('change', value=>{
+            PLayerADATA.value = value
+            if (ManualNamesSW.value == false) {
+                document.querySelector('.PLayerADATA p').innerHTML = value
+            }
+        })
+        const PLayerBDATA = nodecg.Replicant('PLayerBDATA');
+        PLayerBDATA.on('change', value=>{
+            PLayerBDATA.value = value
+            if (ManualNamesSW.value == false) {
+                document.querySelector('.PLayerBDATA p').innerHTML = value
+            }
+        })
+        const CurrentSetA = nodecg.Replicant('CurrentSetA')
+        CurrentSetA.on('change', value=>{
+            document.querySelector('.PlayerASetScoreDATA p').innerHTML = value
+        })
+       
+        const CurrentSetB = nodecg.Replicant('CurrentSetB')
+        CurrentSetB.on('change', value=>{
+            document.querySelector('.PlayerBSetScoreDATA p').innerHTML = value
+        })
+        const PlayerAGameScoreDATA = nodecg.Replicant('PlayerAGameScoreDATA');
+            PlayerAGameScoreDATA.on('change', value => {
+                document.querySelector('.PlayerAGameScoreDATA p').innerHTML = value;
+                if (FinalSet.value == false && PlayingStatus.value != 'destroy' && FinalPoint.value == false) {
+                    if ((PlayerAGameScoreDATA.value == 10 && PlayerBGameScoreDATA.value < 10) ||
+                        (PlayerAGameScoreDATA.value >= 10 && PlayerBGameScoreDATA.value >= 10 &&
+                            PlayerAGameScoreDATA.value > PlayerBGameScoreDATA.value)) {
+                        t3.to('.gamepoint', 0.7, { opacity: 1, yPercent: -100, ease: Power2.easeOut });
+                        t3.to('.gamepoint', 0.5, { opacity: 0, yPercent: 100, delay: 5, ease: Power2.easeOut });
+                    }
+                }
+            })
+        const PlayerBGameScoreDATA = nodecg.Replicant('PlayerBGameScoreDATA');
+            PlayerBGameScoreDATA.on('change', value => {
+                document.querySelector('.PlayerBGameScoreDATA p').innerHTML = value
+                if (FinalSet.value == false && PlayingStatus.value != 'destroy' && FinalPoint.value == false) {
+                    if ((PlayerBGameScoreDATA.value == 10 && PlayerAGameScoreDATA.value < 10) ||
+                        (PlayerBGameScoreDATA.value >= 10 && PlayerAGameScoreDATA.value >= 10 &&
+                            PlayerBGameScoreDATA.value > PlayerAGameScoreDATA.value)) {
+                        t3.to('.gamepoint', 0.7, { opacity: 1, yPercent: -100, ease: Power2.easeOut });
+                        t3.to('.gamepoint', 0.5, { opacity: 0, yPercent: 100, delay: 5, ease: Power2.easeOut });
+                    }
+                }
+            })
+        const PlayerServing = nodecg.Replicant('PlayerServing');
+        
+        PlayerServing.on('change', value=>{
+            if (ServeSW.value == true) {                
+                if(value==="ServeA"){
+                    document.querySelector('.PLayerADATA span').innerHTML = '.'
+                    document.querySelector('.PLayerBDATA span').innerHTML = ''
+                }
+                else{
+                    document.querySelector('.PLayerBDATA span').innerHTML = '.'
+                    document.querySelector('.PLayerADATA span').innerHTML = ''
+                }
+            }
+                else{
+                document.querySelector('.PLayerADATA span').innerHTML = ''
+                document.querySelector('.PLayerBDATA span').innerHTML = ''
+            }
+        })
+	</script>
+	
+</body>
+
+</html>

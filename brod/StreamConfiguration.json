@@ -1,0 +1,10 @@
+{
+  "mssqlconnection": "Driver={ODBC Driver 17 for SQL Server};Server=replica.cf0xlnbvxxos.us-east-1.rds.amazonaws.com;Database=StupaAiProdDb;uid=admin;pwd=stupa-ai-dev1",
+  "postgresconnection": "dbname='stupa-Prod-PG' port='5432' user='postgres' password='stupa-ai-dev1' host='stupaaiprodpost.cf0xlnbvxxos.us-east-1.rds.amazonaws.com'",
+  "fetchMatchAPI": "https://stupa-event-api.stupaanalytics.com/api/Tournament/GetMatchDetail?matchID=",
+  "websocketPushAPI": "https://1ky99duvs6.execute-api.us-east-1.amazonaws.com/test",
+  "websocketAPI":"wss://1ky99duvs6.execute-api.us-east-1.amazonaws.com/test",
+  "aws_key":"AKIA2GS6BILBJ4QGWNV2",
+  "aws_secret":"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"
+}
+
