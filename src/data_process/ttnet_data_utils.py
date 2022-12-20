@@ -76,7 +76,7 @@ def get_events_infor(game_list, configs, dataset_type):
     :param game_list: List of games (video names)
     :return:
     [
-        each event: [[img_path_list], ball_position, target_events]
+        each event: [[img_path_list], ball_position, target_events, segmentation_path]
     ]
     """
     # the paper mentioned 25, but used 9 frames only
@@ -121,10 +121,15 @@ def get_events_infor(game_list, configs, dataset_type):
                 if (ball_position_xy[0] < 0) or (ball_position_xy[1] < 0):
                     continue
 
+                # Get segmentation path for the last frame in the sequence
+                seg_path = os.path.join(annos_dir, game_name, 'segmentation_masks', '{}.png'.format(last_f_idx))
+                if not os.path.isfile(seg_path):
+                    print("smooth_idx: {} - The segmentation path {} is invalid".format(smooth_idx, seg_path))
+                    continue
                 event_class = configs.events_dict[event_name]
 
                 target_events = smooth_event_labelling(event_class, smooth_idx, event_frameidx)
-                events_infor.append([img_path_list, ball_position_xy, target_events])
+                events_infor.append([img_path_list, ball_position_xy, target_events, seg_path])
                 # Re-label if the event is neither bounce nor net hit
                 if (target_events[0] == 0) and (target_events[1] == 0):
                     event_class = 2

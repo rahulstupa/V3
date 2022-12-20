@@ -9,14 +9,12 @@
 # Description: The configurations of the project will be defined here
 """
 
-
-import os
-import sys
 import torch
-import argparse
+import os
 import datetime
+import argparse
 from easydict import EasyDict as edict
-
+import sys
 
 sys.path.append('../')
 
@@ -43,6 +41,8 @@ def parse_configs():
                         help='If true, no local stage for ball detection.')
     parser.add_argument('--no_event', action='store_true',
                         help='If true, no event spotting detection.')
+    parser.add_argument('--no_seg', action='store_true',
+                        help='If true, no segmentation module.')
     parser.add_argument('--pretrained_path', type=str, default=None, metavar='PATH',
                         help='the path of the pretrained checkpoint')
     parser.add_argument('--overwrite_global_2_local', action='store_true',
@@ -111,16 +111,22 @@ def parse_configs():
                         help='If true, no update/train weights for the local stage of ball detection.')
     parser.add_argument('--freeze_event', action='store_true',
                         help='If true, no update/train weights for the event module.')
+    parser.add_argument('--freeze_seg', action='store_true',
+                        help='If true, no update/train weights for the segmentation module.')
 
     ####################################################################
     ##############     Loss weight            ###################
     ####################################################################
+    parser.add_argument('--bce_weight', type=float, default=0.5,
+                        help='The weight of BCE loss in segmentation module, the dice_loss weight = 1- bce_weight')
     parser.add_argument('--global_weight', type=float, default=1.,
                         help='The weight of loss of the global stage for ball detection')
     parser.add_argument('--local_weight', type=float, default=1.,
                         help='The weight of loss of the local stage for ball detection')
     parser.add_argument('--event_weight', type=float, default=1.,
                         help='The weight of loss of the event spotting module')
+    parser.add_argument('--seg_weight', type=float, default=1.,
+                        help='The weight of BCE loss in segmentation module')
 
     ####################################################################
     ##############     Distributed Data Parallel            ############
@@ -151,6 +157,8 @@ def parse_configs():
                         help='the path of the resumed checkpoint')
     parser.add_argument('--use_best_checkpoint', action='store_true',
                         help='If true, choose the best model on val set, otherwise choose the last model')
+    parser.add_argument('--seg_thresh', type=float, default=0.5,
+                        help='threshold of the segmentation output')
     parser.add_argument('--event_thresh', type=float, default=0.5,
                         help='threshold of the event spotting output')
     parser.add_argument('--save_test_output', action='store_true',
@@ -168,7 +176,7 @@ def parse_configs():
     parser.add_argument('--save_demo_output', action='store_true',
                         help='If true, the image of demonstration phase will be saved')
 
-    configs = edict(vars(parser.parse_args([])))  ## Added fix for notebook access to parse config
+    configs = edict(vars(parser.parse_args()))
 
     ####################################################################
     ############## Hardware configurations ############################
@@ -200,7 +208,7 @@ def parse_configs():
     configs.org_size = (1920, 1080)
     configs.input_size = (320, 128)
 
-    configs.tasks = ['global', 'local', 'event']
+    configs.tasks = ['global', 'local', 'event', 'seg']
     if configs.no_local:
         if 'local' in configs.tasks:
             configs.tasks.remove('local')
@@ -209,12 +217,16 @@ def parse_configs():
     if configs.no_event:
         if 'event' in configs.tasks:
             configs.tasks.remove('event')
+    if configs.no_seg:
+        if 'seg' in configs.tasks:
+            configs.tasks.remove('seg')
 
     # Compose loss weight for tasks, normalize the weights later
     loss_weight_dict = {
         'global': configs.global_weight,
         'local': configs.local_weight,
         'event': configs.event_weight,
+        'seg': configs.seg_weight
     }
     configs.tasks_loss_weight = [loss_weight_dict[task] for task in configs.tasks]
 
@@ -225,6 +237,8 @@ def parse_configs():
         configs.freeze_modules_list.append('ball_local_stage')
     if configs.freeze_event:
         configs.freeze_modules_list.append('events_spotting')
+    if configs.freeze_seg:
+        configs.freeze_modules_list.append('segmentation')
 
     ####################################################################
     ############## logs, Checkpoints, and results dir ########################

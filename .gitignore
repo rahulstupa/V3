@@ -1,2 +1,7 @@
 dataset/
 checkpoints/
+rawData/
+*.mp4
+*.pyc
+*.csv
+*.avi
